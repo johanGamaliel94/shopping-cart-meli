@@ -11,18 +11,26 @@ import { ProductCard } from '../../components/ProductCard';
 import { ProductInfo } from '../components/productInfo';
 
 import { ProductInfoContext } from '../../../context/productViewContext';
+import { CartItemsContext } from '../../../context/cartItemsContext';
+import CartDetails from '../components/cartDetails';
 const images = require.context('../../../images/products', true);
 
 export const PrincipalPage = () => {
     const [open, setOpen] = React.useState(false);
+    const [openCart, setOpenCart] = React.useState(false);
     const [productInfo, setProductInfo] = React.useState({});
     const [products, setProducts] = React.useState([]);
+    const cartItems = React.useRef([]);
 
     const handleOpen = (product) => {
         setOpen(true);
         setProductInfo(product);
     };
-    const handleClose = () => setOpen(false);
+    const handleClose = () => { 
+        setOpen(false);
+        setOpenCart(false);
+        document.getElementsByClassName("happy-shopping-icon-bag")[0].classList.remove("cart-animated");
+    };
 
     const responsive = {
         superLargeDesktop: {
@@ -63,7 +71,7 @@ export const PrincipalPage = () => {
     
     return (
         <>
-            <ShoppingHeader />
+            <ShoppingHeader handlerOpenCartModal={setOpenCart} />
             <ProductInfoContext.Provider value={{productInfo}}>
                 <Modal
                     classes="product-info-details"
@@ -73,9 +81,21 @@ export const PrincipalPage = () => {
                     aria-labelledby="keep-mounted-modal-title"
                     aria-describedby="keep-mounted-modal-description"
                 >
-                    <ProductInfo />
+                    <ProductInfo cartItems={cartItems} />
                 </Modal>
             </ProductInfoContext.Provider>
+            <CartItemsContext.Provider value={{cartItems}}>
+                <Modal
+                    classes="products-info-details"
+                    keepMounted
+                    open={openCart}
+                    onClose={handleClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                >
+                    <CartDetails />
+                </Modal>
+            </CartItemsContext.Provider>
             <div className="carousel-full bg-meli">
                 <Carousel
                     swipeable={false}

@@ -81,6 +81,32 @@
     margin: auto;
 }
 
+.product-details-img-cart {
+    max-height: 200px;
+    max-width: 175px;
+}
+
 .product-price {
     margin-top: 20px;
+}
+
+.cart-items {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.cart-animated {
+    animation-duration: 1s;
+    animation-name: slidein;
+    animation-iteration-count: abs($number: 2);
+}
+
+@keyframes slidein {
+    from {
+        transform: scale(1.5);
+        color: black;
+    }
+    to {
+        transform: scale(1);
+    }
 }

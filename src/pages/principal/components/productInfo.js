@@ -1,15 +1,51 @@
 import React from 'react';
 
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 import { ProductInfoContext } from '../../../context/productViewContext';
 import { QuantityInput } from '../../components/NumberInputMUI';
 import { Button } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
 
-export const ProductInfo = () => {
+export const ProductInfo = ({ cartItems }) => {
+    const [feedback, setFeedback] = React.useState({
+        open: false,
+        message: 'Se ha agregado el producto al carrito',
+        severity: 'success'
+    });
     const product = React.useContext(ProductInfoContext);
-    console.log(product);
+
+    const [quantity, setQuantity] = React.useState(1);
+    const [stock, setStock] = React.useState();
+
+    const addItem = (product) => {
+        let quantityAux = quantity;
+        let index = 0;
+        let itemAux = {};
+        if (stock - quantity < 0) return setFeedback({...feedback, open: true, message: 'No hay suficiente stock', severity: 'error'});
+        setFeedback({...feedback, open: true, message: `${product.productInfo.name} se ha agregado correctamente al carrito`, severity: 'success'})
+        setStock(stock - quantity);
+        document.getElementsByClassName("happy-shopping-icon-bag")[0].classList.add("cart-animated");
+        cartItems.current.forEach((item, i) => {
+            if (item.name === product.productInfo.name) {
+                quantityAux += quantity;
+                index = i;
+                itemAux = item;
+                itemAux.qty += quantity;
+            }
+        });
+        if (quantityAux === quantity) {
+            cartItems.current.push({ 
+                    name: product.productInfo.name,
+                    qty: quantity, 
+                    price: product.productInfo.price,
+                    img: product.productInfo.img 
+            });
+            return;
+        }
+        cartItems.current[index] = itemAux;
+    }
+    
     const style = {
         position: 'absolute',
         top: '50%',
@@ -21,6 +57,10 @@ export const ProductInfo = () => {
         boxShadow: 24,
         p: 4,
     };
+
+    React.useEffect(() => {
+        setStock(product.productInfo.stock);
+    }, [product.productInfo.stock]);
 
     return (
         <Box sx={style}>
@@ -52,18 +92,29 @@ export const ProductInfo = () => {
                         <div className="product-price poly-component__price">
                             <div className="poly-price__current">
                                 <QuantityInput
-                                    maxQuantity={product.productInfo.stock}
-                                    onChange={(event, newValue) => console.log(`${event.type} event: the new value is ${newValue}`)}
+                                    maxQuantity={stock}
+                                    onChange={(event, newValue) => setQuantity(newValue)}
                                 />
-                                <Button>Añadir a carrito</Button>
+                                <Button onClick={() => addItem(product)}>Añadir a carrito</Button>
                             </div>
                             <div className="product-price poly-price__current">
-                                Max: {product.productInfo.stock}
+                                Max: {stock}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Snackbar
+                open={feedback.open}
+                autoHideDuration={3000}
+                message={feedback.message}
+                onClose={(event, reason) => {
+                    if (reason === 'clickaway') {
+                        return;
+                    }
+                    setFeedback({ open: false, message: '', severity: '' });
+                }}
+            />
         </Box>
     );
 };

@@ -31,7 +31,14 @@ body {
 
 .container-70 {
     display: flex;
-    max-width: 70%;
+    width: 70%;
+}
+
+.container-30 {
+    width: 30%;
+    svg {
+        padding: 2.75rem 1rem 2.75rem 1rem;
+    }
 }
 
 .happy-shopping-nav {
@@ -140,4 +147,11 @@ body {
 .blue-ml-text {
     color: $blue-ml;
 }
-  
+
+.happy-shopping-icon-bag {
+    cursor: pointer;
+    float: right;
+    font-size: 30px;
+    padding-right: 1em;
+    margin: auto 0;
+}

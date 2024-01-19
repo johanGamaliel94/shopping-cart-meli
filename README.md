@@ -1,6 +1,15 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Challenge IS - DevTools - Shopping cart
+
+## Minimal requirements
+
+### `Node v14.20.0 - NPM 6.14.17 and above`
+
+## First run
+
+### `npm install`
 
 ## Available Scripts
 

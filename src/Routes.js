@@ -7,6 +7,7 @@ export const RoutesApp = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<PrincipalPage />} />
+                <Route path="/principal" element={<PrincipalPage />} />
             </Routes>
         </Router>
     );
