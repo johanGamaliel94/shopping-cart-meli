@@ -1,0 +1,86 @@
+@import "react-multi-carousel/lib/styles.css";
+
+.products {
+    .col {
+        text-align: center;
+    }
+    .product {
+        cursor: pointer;
+        margin: 10px;
+        background-color: #fff;
+        padding: 10px 0 10px 0;
+        border-radius: 6px;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.12);
+    }
+    .row-product {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        padding: 10px 20px 0 20px;
+    }
+    .product img {
+        @media screen and (max-width: 1450px) {
+            max-height: 149px;
+        }
+        max-height: 196px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+    }
+}
+
+.react-multi-carousel-list {
+    padding-bottom: 10px;
+}
+
+.carousel-full {
+    min-height: 80vh;
+}
+
+.row-justify-left {
+    justify-content: left !important;
+}
+
+.container-product-left {
+    width: 430px;
+}
+
+.container-full { 
+    width: 100%;
+    display: flex;
+}
+
+.container-50 { 
+    width: 50%;
+}
+
+.product-info-details, .css-1acyv19 {
+    max-height: calc(100vh - 120px) !important;
+    width: 760px !important;
+}
+
+.flex {
+    display: flex !important;
+    flex-direction: row;
+}
+
+.product-details-mg {
+    padding: 2rem;
+}
+
+.product-details-img {
+    object-fit: cover;
+    max-height: 400px;
+    max-width: 350px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.product-price {
+    margin-top: 20px;
+}

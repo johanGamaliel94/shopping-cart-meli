@@ -1,0 +1,143 @@
+$header-foreground: #000;
+$blue-ml: #3483fa;
+
+body {
+    font-family: Proxima Nova,-apple-system,Helvetica Neue,helvetica,roboto,arial,sans-serif;
+}
+
+.container {
+    max-width: 1600px;
+    @media screen and (max-width: 1200px) {
+        max-width: 1140px;
+    }
+}
+
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.bg-principal {
+    background-color: #E6CB43;
+}
+
+.container-70 {
+    display: flex;
+    max-width: 70%;
+}
+
+.happy-shopping-nav {
+    margin-left: 2.5rem;
+    display: inline-flex;
+    a {
+        color: white;
+        text-decoration: inherit;
+        font-weight: bold;
+    }
+}
+
+.happy-shopping-nav__item {
+    padding: 2.75rem 1rem 2.75rem 1rem;
+}
+
+.happy-shopping-white {
+    color: white;
+}
+
+.bg-meli {
+    background-color: #ebebeb;
+}
+
+.poly-price__current {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.poly-price__current .money-amount {
+    margin-right: 8px;
+}
+
+.money-amount {
+    align-items: baseline;
+    display: flex;
+    font-weight: 400;
+    line-height: 1.25;
+    font-size: 32px;
+}
+
+.money-amount__currency-symbol, .money-amount__negative-symbol {
+    padding-right: 0.2em;
+}
+
+.product-name {
+    font-size: 16px;
+    line-height: 20px;
+    max-height: 40px;
+    color: rgba(0,0,0,.9);
+    display: -webkit-box;
+    font-weight: 400;
+    line-height: 18px;
+    margin-top: 12px;
+    max-height: 50px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.footer-is {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    color: $header-foreground;
+    font-size: 12px;
+    text-align: center;
+    box-shadow: 0 5px 5px 0 $header-foreground;
+    border-top: 1px solid #eee;
+    line-height: 1;
+    font-weight: 400;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: unset;
+}
+
+.footer-left-text {
+    padding: 16px 10px;
+    float: left !important;
+    margin-left: 15%;
+    font-size: 14px;
+    text-align: left;
+    align-items: flex-end;
+}
+
+.footer-right-text {
+    padding: 16px 10px;
+    float: right !important;
+    margin-right: 15%;
+    bottom: 0;
+    font-size: 14px;
+    text-align: left;
+    align-items: flex-end;
+}
+
+.text-md {
+    color: #757575;
+}
+  
+.bold-text-md {
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+.blue-ml-text {
+    color: $blue-ml;
+}
+  
