@@ -103,7 +103,7 @@ export const PrincipalPage = () => {
                     showDots={true}
                     ssr={true}
                     infinite={true}
-                    autoPlay={false}
+                    autoPlay={true}
                     autoPlaySpeed={5000}
                     keyBoardControl={true}
                     customTransition="all 1"
