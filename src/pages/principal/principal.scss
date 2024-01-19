@@ -101,6 +101,15 @@
     animation-iteration-count: abs($number: 2);
 }
 
+.css-zza0ns-MuiBadge-badge {
+    position: absolute !important;
+    top: 42px !important;
+}
+
+.column {
+    float: right;
+}
+
 @keyframes slidein {
     from {
         transform: scale(1.5);

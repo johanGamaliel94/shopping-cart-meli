@@ -5,8 +5,9 @@ import '../_commons.scss';
 
 import { FaChevronDown } from "react-icons/fa";
 import { RiShoppingCart2Line } from "react-icons/ri";
+import Badge from '@mui/material/Badge';
 
-export const ShoppingHeader = ({handlerOpenCartModal}) => {
+export const ShoppingHeader = ({items, handlerOpenCartModal}) => {
     
     return (
         <div className="bg-principal">
@@ -34,10 +35,12 @@ export const ShoppingHeader = ({handlerOpenCartModal}) => {
                 </div>
                 <div className="container-30">
                     <div className="column">
-                        <RiShoppingCart2Line
-                            className="happy-shopping-white happy-shopping-icon-bag"
-                            onClick={handlerOpenCartModal}
-                        />
+                        <Badge badgeContent={items.current.length} className="badge" color="primary">
+                            <RiShoppingCart2Line
+                                className="happy-shopping-white happy-shopping-icon-bag"
+                                onClick={handlerOpenCartModal}
+                            />
+                        </Badge>
                     </div>
                 </div>
             </div>

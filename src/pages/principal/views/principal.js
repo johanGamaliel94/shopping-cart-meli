@@ -71,7 +71,7 @@ export const PrincipalPage = () => {
     
     return (
         <>
-            <ShoppingHeader handlerOpenCartModal={setOpenCart} />
+            <ShoppingHeader items={cartItems} handlerOpenCartModal={setOpenCart} />
             <ProductInfoContext.Provider value={{productInfo}}>
                 <Modal
                     classes="product-info-details"

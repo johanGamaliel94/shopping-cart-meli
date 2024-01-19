@@ -1,12 +1,21 @@
 import React from 'react';
 
 import Box from '@mui/material/Box';
+import Snackbar from '@mui/material/Snackbar';
 
+import { styled } from '@mui/system';
 import { CartItemsContext } from '../../../context/cartItemsContext';
+import { Button as BaseButton, buttonClasses } from '@mui/material';
 
 export const CartDetails = () => {
     const cartDetails = React.useContext(CartItemsContext);
     const total = React.useRef(0);
+
+    const [feedback, setFeedback] = React.useState({
+        open: false,
+        message: 'Se ha confirmado el pedido',
+        severity: 'success'
+    });
     
     const style = {
         position: 'absolute',
@@ -25,6 +34,40 @@ export const CartDetails = () => {
         totalAux += item.price * item.qty;
     });
     total.current = Intl.NumberFormat().format(totalAux);
+
+    const Button = styled(BaseButton)(
+        ({ theme }) => `
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        background-color: #007FFF;
+        padding: 8px 16px;
+        border-radius: 8px;
+        color: white;
+        transition: all 150ms ease;
+        cursor: pointer;
+        border: 1px solid #007FFF;
+        box-shadow: 0 2px 1px ${
+          theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(45, 45, 60, 0.2)'
+        }, inset 0 1.5px 1px #3399FF, inset 0 -2px 1px #3399FF;
+      
+        &:hover {
+          background-color: #0072E5;
+        }
+      
+        &.${buttonClasses.active} {
+          background-color: #0066CC;
+          box-shadow: none;
+          transform: scale(0.99);
+        }
+      
+        &.${buttonClasses.focusVisible} {
+          box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? '#66B2FF' : '#99CCFF'};
+          outline: none;
+        }
+        `,
+      );
 
     return (
         <Box sx={style}>
@@ -71,8 +114,26 @@ export const CartDetails = () => {
                             <span class="money-amount__fraction" aria-hidden="true">{total.current}</span>
                         </span>
                     </div>
+                    <div className="poly-price__current">
+                        <span class="money-amount money-amount--cents-superscript">
+                            <Button onClick={() => setFeedback({...feedback, open: true, message: `Se ha confirmado la compra, en breve te notificaremos.`, severity: 'success'})}>Confirmar pedido</Button>
+                        </span>
+                    </div>
                 </div>
+                <Snackbar
+                    open={feedback.open}
+                    severity={feedback.severity}
+                    autoHideDuration={3000}
+                    message={feedback.message}
+                    onClose={(event, reason) => {
+                        if (reason === 'clickaway') {
+                            return;
+                        }
+                        setFeedback({ open: false, message: '', severity: '' });
+                    }}
+                />
             </div>
+            
         </Box>
     );
 };

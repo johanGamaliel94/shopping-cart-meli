@@ -59,6 +59,7 @@ export const ProductInfo = ({ cartItems }) => {
     };
 
     React.useEffect(() => {
+        setQuantity(1);
         setStock(product.productInfo.stock);
     }, [product.productInfo.stock]);
 
@@ -85,13 +86,14 @@ export const ProductInfo = ({ cartItems }) => {
                                     aria-roledescription="Precio"
                                 >
                                     <span class="money-amount__currency-symbol" aria-hidden="true">$</span>
-                                    <span class="money-amount__fraction" aria-hidden="true">{product.productInfo.price}</span>
+                                    <span class="money-amount__fraction" aria-hidden="true">{Intl.NumberFormat().format(product.productInfo.price)}</span>
                                 </span>
                             </div>
                         </div>
                         <div className="product-price poly-component__price">
                             <div className="poly-price__current">
                                 <QuantityInput
+                                    value={quantity}
                                     maxQuantity={stock}
                                     onChange={(event, newValue) => setQuantity(newValue)}
                                 />

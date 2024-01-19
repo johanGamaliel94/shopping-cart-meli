@@ -32,8 +32,8 @@ import {
     );
   });
   
-  export const QuantityInput = ({maxQuantity, onChange}) => {
-    return <NumberInput aria-label="Quantity Input" min={1} max={maxQuantity} onChange={onChange} />;
+  export const QuantityInput = ({maxQuantity, onChange, value}) => {
+    return <NumberInput aria-label="Quantity Input" min={1} max={maxQuantity} onChange={onChange} value={value} />;
   }
   
   const blue = {

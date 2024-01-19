@@ -18,7 +18,7 @@ export const ProductCard = ({name, path, price, handler}) => {
                             aria-roledescription="Precio"
                         >
                             <span class="money-amount__currency-symbol" aria-hidden="true">$</span>
-                            <span class="money-amount__fraction" aria-hidden="true">{price}</span>
+                            <span class="money-amount__fraction" aria-hidden="true">{Intl.NumberFormat().format(price)}</span>
                         </span>
                     </div>
                 </div>
